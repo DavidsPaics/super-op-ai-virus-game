@@ -29,3 +29,8 @@ def getObjectByType(typeID):
         pngPath = "./sprites/temp/flipped{}.png".format(typeID)
 
     return pngPath, returnCode
+
+
+if __name__ == "__main__":
+    print("This is a library, not a script")
+    quit()
