@@ -9,7 +9,7 @@ if verbose:
     print("importing")
 # pygame setup
 import pygame
-from utils import objectSystemUtils  # Skatīt aprakstu pašā failā.
+from utils import objectSystemUtils  # Skatīt aprakstu pašā failā
 
 if verbose:
     print("initialize pygame")
