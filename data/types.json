@@ -8,7 +8,7 @@
         "src": "spike.png"
     },
     "3": {
-        //jāiet no labā apakšējāstūra uz augšējo kreiso stūri. tu jau saproti.
+        "comment": "jāiet no labā apakšējāstūra uz augšējo kreiso stūri. tu jau saproti.",
         "name": "slope",
         "src": "slope.png"
     },
