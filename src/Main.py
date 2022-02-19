@@ -1,11 +1,18 @@
 # imports
 import sys
 
-verbose = True#sys.argv[1]
+
+verbose = True
+
+
 if verbose:
     print("importing")
 #pygame setup
 import pygame
+
+if verbose:
+    print("initialize pygame")
+
 pygame.init()
 win=pygame.display.set_mode((1300,700))
 pygame.display.set_caption("tutoring")
