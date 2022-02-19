@@ -29,7 +29,3 @@ def getObjectByType(typeID):
         pngPath = "./sprites/temp/flipped{}.png".format(typeID)
 
     return pngPath, returnCode
-
-
-for i in range(10):
-    print(getObjectByType(4))
