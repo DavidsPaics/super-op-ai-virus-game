@@ -7,18 +7,18 @@
     "2": {
         "name": "spike",
         "src": "spike.png",
-        "type": "block"
+        "type": "spike"
     },
     "3": {
         "comment": "jāiet no labā augšējā stūra uz apakšējo kreiso stūri. tu jau saproti.",
         "name": "slope",
         "src": "slope.png",
-        "type": "block"
+        "type": "slope1"
     },
     "4": {
         "name": "slope-inverted",
         "src": "slope.png",
-        "type": "block"
+        "type": "slope2"
     },
     "5": {
         "name": "placeholder",
