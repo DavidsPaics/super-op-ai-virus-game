@@ -1,7 +1,7 @@
 # imports
 import sys
 
-verbose = sys.argv[1]
+verbose = True
 if verbose:
     print("importing")
 
