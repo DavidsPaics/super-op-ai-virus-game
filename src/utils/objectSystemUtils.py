@@ -33,4 +33,4 @@ def getObjectByType(typeID):
 
 if __name__ == "__main__":
     print("This is a library, not a script")
-    quit()
+    print(getObjectByType(4))

@@ -1,23 +1,28 @@
 {
     "1": {
         "name": "ground",
-        "src": "block.png"
+        "src": "block.png",
+        "type": "block"
     },
     "2": {
         "name": "spike",
-        "src": "spike.png"
+        "src": "spike.png",
+        "type": "block"
     },
     "3": {
-        "comment": "jāiet no labā apakšējāstūra uz augšējo kreiso stūri. tu jau saproti.",
+        "comment": "jāiet no labā augšējā stūra uz apakšējo kreiso stūri. tu jau saproti.",
         "name": "slope",
-        "src": "slope.png"
+        "src": "slope.png",
+        "type": "block"
     },
     "4": {
         "name": "slope-inverted",
-        "src": "slope.png"
+        "src": "slope.png",
+        "type": "block"
     },
     "5": {
         "name": "placeholder",
-        "src": "error.png"
+        "src": "error.png",
+        "type": "block"
     }
 }
