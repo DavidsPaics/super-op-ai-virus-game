@@ -3,6 +3,10 @@ from PIL import Image
 import os.path
 from os import path
 
+# imoprtē šo kā bibliotēku, izmanto funkciju getObjectType(n) lai dabūtu png attrašanās vietu, ja "name" sadaļa types.json failā iekļaus "inverted", fails tiks automātiski apgriests
+# Tiek izvadīti šādi dati: pngPath(String), returnCode(Int)
+# Ja kods ir 0 - viss ok, 1 - png tekstūra nav atrasta, tiek izmantota error.png
+
 
 def getObjectByType(typeID):
     with open("./data/types.json", encoding="utf8") as f:
@@ -24,7 +28,7 @@ def getObjectByType(typeID):
         imageObject.save("./sprites/temp/flipped{}.png".format(typeID))
         pngPath = "./sprites/temp/flipped{}.png".format(typeID)
 
-    return [pngPath, returnCode]
+    return pngPath, returnCode
 
 
 for i in range(10):
