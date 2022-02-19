@@ -2,5 +2,22 @@
     "1": {
         "name": "ground",
         "src": "block.png"
+    },
+    "2": {
+        "name": "spike",
+        "src": "spike.png"
+    },
+    "3": {
+        //jāiet no labā apakšējāstūra uz augšējo kreiso stūri. tu jau saproti.
+        "name": "slope",
+        "src": "slope.png"
+    },
+    "4": {
+        "name": "slope-inverted",
+        "src": "slope.png"
+    },
+    "5": {
+        "name": "placeholder",
+        "src": "error.png"
     }
 }

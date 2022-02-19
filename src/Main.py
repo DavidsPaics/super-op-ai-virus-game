@@ -15,11 +15,9 @@ if verbose:
 
 pygame.init()
 win = pygame.display.set_mode((1080, 720))
-pygame.display.set_caption("tutoring")
 # variables
 run = True
 clock = pygame.time.Clock()
-x = 0
 # mainloop
 while run:
     clock.tick(60)
