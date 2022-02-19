@@ -1,28 +1,30 @@
 # imports
 import sys
 
+
 verbose = True
+
+
 if verbose:
     print("importing")
-
+#pygame setup
 import pygame
 
 if verbose:
     print("initialize pygame")
 
 pygame.init()
-win = pygame.display.set_mode((1300, 700))
-run = True
-clock = pygame.time.Clock()
-x = 0
+win=pygame.display.set_mode((1300,700))
+pygame.display.set_caption("tutoring")
+#variables
+run=True
+clock=pygame.time.Clock()
+x=0
+#mainloop
 while run:
     clock.tick(60)
     for event in pygame.event.get():
-        if event.type == pygame.QUIT:
-            run = False
-    keys = pygame.key.get_pressed()
-    if keys[pygame.K_a]:
-        x += 1
-        win.fill((0, 0, 0))
-        pygame.draw.rect(win, (0, 80, 0), (1300 - x, 50, x + 1, 60))
-        pygame.display.update()
+        if event.type==pygame.QUIT:
+            run=False
+    keys=pygame.key.get_pressed()
+pygame.quit()
