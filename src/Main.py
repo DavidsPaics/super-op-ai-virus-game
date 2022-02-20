@@ -1,16 +1,13 @@
+import os
+import shutil
+import pygame
+import object as objectUtil
+from utils import globalInfo
 verbose = True
 if verbose:
     print("importing")
 
 # essential imports
-from utils import globalInfo
-import object as objectUtil
-import pygame
-import shutil
-import os
-
-
-
 
 
 # Clear temporary files
@@ -46,8 +43,6 @@ y_vel=0
 y_pos=0
 smallest_y=0
 airborne=False
-
-
 # mainloop
 while run:
     # update background
@@ -55,7 +50,6 @@ while run:
 
     # create ground (13 tiles long (see cell size in utils/globalInfo.py))
     for i in range(13):
-
         objectUtil.drawObject(screen, i, 0, 1, verbose=True)
 
 
@@ -90,6 +84,7 @@ while run:
                 y_vel=-50
             y_vel+=5#I tested this, this should give us a nice smooth jump
     objectUtil.drawObject(screen, 5, 1-(y_pos/100), 4, verbose=False)
+
 
 
 
