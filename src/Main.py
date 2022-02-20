@@ -32,8 +32,6 @@ pygame.mouse.set_visible(False)
 pygame.display.set_caption("Geometry shoot")
 
 
-
-currentframe = 0
 vel=[2,0]
 ypos=0
 smallest_y=0
