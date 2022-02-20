@@ -1,3 +1,5 @@
+currentframe = 0
+
 class variables(object):
     def __init__(self):
         self.gridCellSize = 85

@@ -12,6 +12,7 @@ if verbose:
 import pygame
 from utils import objectSystemUtils  # Skatīt aprakstu pašā failā.
 import object as objectUtil
+from utils import globalInfo
 
 #Clear temporary files
 try:
@@ -32,8 +33,6 @@ pygame.mouse.set_visible(False)
 pygame.display.set_caption("Geometry shoot")
 
 
-currentframe = 0
-
 # mainloop
 while run:
     # update background
@@ -48,7 +47,7 @@ while run:
     objectUtil.drawObject(screen, 7, 1, 3, verbose=True, rotation="down")
     objectUtil.drawObject(screen, 8, 1, 3, rotation="flipped down", verbose=True)
 
-    if currentframe % 2 == 0:
+    if globalInfo.currentframe % 2 == 0:
         objectUtil.drawObject(screen, 6, 3, 5, verbose=True)
     else:
         objectUtil.drawObject(screen, 5, 3, 5, verbose=True)
@@ -60,6 +59,6 @@ while run:
     if keys[pygame.K_SPACE]:
         jump()
     pygame.display.flip()
-    currentframe += 1
+    globalInfo.currentframe += 1
     clock.tick(60)
 pygame.quit()
