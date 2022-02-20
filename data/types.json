@@ -15,14 +15,14 @@
         "src": "slope.png",
         "type": "slope"
     },
-    "5": {
-        "name": "placeholder",
-        "src": "error.png",
-        "type": "block"
-    },
     "4": {
         "name": "player",
         "src": "player.png",
         "type": "player"
+    },
+    "5": {
+        "name": "placeholder",
+        "src": "error.png",
+        "type": "block"
     }
 }
