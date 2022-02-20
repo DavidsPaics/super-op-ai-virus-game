@@ -19,5 +19,10 @@
         "name": "placeholder",
         "src": "error.png",
         "type": "block"
+    },
+    "4": {
+        "name": "player",
+        "src": "player.png",
+        "type": "player"
     }
 }
