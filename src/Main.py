@@ -57,6 +57,8 @@ while run:
         if event.type == pygame.QUIT:
             run = False
     keys = pygame.key.get_pressed()
+    if keys[pygame.K_SPACE]:
+        jump()
     pygame.display.flip()
     currentframe += 1
     clock.tick(60)
