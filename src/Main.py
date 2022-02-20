@@ -83,7 +83,7 @@ while run:
             if y_vel<-50:
                 y_vel=-50
             y_vel+=2#I tested this, this should give us a nice smooth jump
-    objectUtil.drawObject(screen, 5, 1-(y_pos/100), 4, verbose=False)
+    objectUtil.drawObject(screen, 5, 1-(y_pos/100), 4, bypassSideScroll=True)
 
 
 
