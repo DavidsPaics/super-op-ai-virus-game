@@ -68,4 +68,5 @@ if __name__ == "__main__":
     print(
         "This is a library, not a script, strting test, this could take a few microseconds"
     )
-    print(getObjectByType(0, 0, 1, "right"))
+    for i in range(1000):
+        print(getObjectByType(0, 0, 1, "right"))
