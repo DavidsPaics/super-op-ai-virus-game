@@ -26,7 +26,7 @@ def getObjectByType(x, y, typeID, rotation):
         returnCode = 1
 
 
-    if "down" in rotation:
+    if rotation == "down":
         if not "./sprites/temp/down_{}.png".format(typeID) in existingPaths:
             imageObject = Image.open(pngPath)
             imageObject = imageObject.transpose(Image.FLIP_TOP_BOTTOM)
@@ -34,7 +34,7 @@ def getObjectByType(x, y, typeID, rotation):
         else:
             existingPaths.append("./sprites/temp/down_{}.png".format(typeID))
         pngPath = "./sprites/temp/down_{}.png".format(typeID)
-    elif "flipped" in rotation:
+    elif rotation == "flipped":
         if not "./sprites/temp/flipped_{}.png".format(typeID) in existingPaths:
             imageObject = Image.open(pngPath)
             imageObject = imageObject.transpose(Image.FLIP_LEFT_RIGHT)
