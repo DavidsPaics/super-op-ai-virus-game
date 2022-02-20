@@ -1,16 +1,13 @@
+import os
+import shutil
+import pygame
+import object as objectUtil
+from utils import globalInfo
 verbose = True
 if verbose:
     print("importing")
 
 # essential imports
-from utils import globalInfo
-import object as objectUtil
-import pygame
-import shutil
-import os
-
-
-
 
 
 # Clear temporary files
@@ -50,20 +47,20 @@ while run:
 
     # create ground (13 tiles long (see cell size in utils/globalInfo.py))
     for i in range(13):
-        objectUtil.drawObject(screen, i, 0, 1, verbose=True)
+        objectUtil.drawObject(screen, i, 0, 1)
 
-    objectUtil.drawObject(screen, 4, 1, 3, verbose=True)
-    objectUtil.drawObject(screen, 5, 1, 3, rotation="flipped", verbose=True)
-    objectUtil.drawObject(screen, 7, 1, 3, verbose=True, rotation="down")
+    objectUtil.drawObject(screen, 4, 1, 3)
+    objectUtil.drawObject(screen, 5, 1, 3, rotation="flipped")
+    objectUtil.drawObject(screen, 7, 1, 3, rotation="down")
     objectUtil.drawObject(
-        screen, 8, 1, 3, rotation="flipped down", verbose=True)
+        screen, 8, 1, 3, rotation="flipped down")
 
     screen.blit(update_fps(), (10, 0))
 
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
             run = False
-    objectUtil.drawObject(screen, 5, 1-ypos, 5, verbose=True)
+    objectUtil.drawObject(screen, 5, 1-ypos, 5)
     keys = pygame.key.get_pressed()
     # if keys[pygame.K_SPACE] and smallest:
     #    vel[1]=10

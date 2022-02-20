@@ -3,7 +3,7 @@ import pygame
 from utils import globalInfo
 
 variables = globalInfo.variables()
-loaded = {""}
+loaded = {}
 
 
 class gridCell(object):
@@ -24,18 +24,35 @@ class gridCell(object):
 def drawObject(screen, x, y, typeID, rotation="up", verbose=False, bypassSideScroll=False):
 
     if (not x * variables.gridCellSize - (variables.sideScrollSpeed * globalInfo.currentframe) < -variables.gridCellSize):
-        returnObject = gridCell(
-            x, y, typeID, rotation, bypassSideScroll=bypassSideScroll
-        )
-        texture = pygame.image.load(returnObject.texture)
-        texture = pygame.transform.scale(
-            texture, (variables.gridCellSize, variables.gridCellSize)
-        )
-        screen.blit(texture, (returnObject.x, returnObject.y))
-        if verbose:
-            print("drawing: {}, {} from texture {}".format(
-                returnObject.x, returnObject.y, returnObject.texture))
-        return returnObject
+        if rotation + str(typeID) in loaded:
+            returnY = 720 - y * variables.gridCellSize - variables.gridCellSize
+            if bypassSideScroll:
+                returnX = x * variables.gridCellSize
+            else:
+                returnX = x * variables.gridCellSize - (variables.sideScrollSpeed * globalInfo.currentframe)
+            
+            texture = pygame.image.load(loaded[rotation+str(typeID)])
+            texture = pygame.transform.scale(
+                texture, (variables.gridCellSize, variables.gridCellSize)
+            )
+            screen.blit(texture, (returnX, returnY))
+            if verbose:
+                print("drawing object from cached texture")
+        else:
+            returnObject = gridCell(
+                x, y, typeID, rotation, bypassSideScroll=bypassSideScroll
+            )
+            texture = pygame.image.load(returnObject.texture)
+            texture = pygame.transform.scale(
+                texture, (variables.gridCellSize, variables.gridCellSize)
+            )
+            screen.blit(texture, (returnObject.x, returnObject.y))
+            if verbose:
+                print("drawing: {}, {} from texture {}".format(
+                    returnObject.x, returnObject.y, returnObject.texture))
+
+            loaded[rotation +str(typeID)] = returnObject.texture
+            return returnObject
 
     else:  # Object is offscreen
         if verbose:
