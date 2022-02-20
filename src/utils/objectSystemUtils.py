@@ -30,13 +30,21 @@ def getObjectByType(x, y, typeID, rotation):
             imageObject = Image.open(pngPath)
             imageObject = imageObject.transpose(Image.FLIP_TOP_BOTTOM)
             imageObject.save("./sprites/temp/down_{}.png".format(typeID))
-            pngPath = "./sprites/temp/down_{}.png".format(typeID)
-    if "flipped" in rotation:
+        pngPath = "./sprites/temp/down_{}.png".format(typeID)
+    elif "flipped" in rotation:
         if not path.exists("./sprites/temp/flipped_{}.png".format(typeID)):
             imageObject = Image.open(pngPath)
             imageObject = imageObject.transpose(Image.FLIP_LEFT_RIGHT)
             imageObject.save("./sprites/temp/flipped_{}.png".format(typeID))
-            pngPath = "./sprites/temp/flipped_{}.png".format(typeID)
+        pngPath = "./sprites/temp/flipped_{}.png".format(typeID)
+
+    if "flipped" in rotation and "down" in rotation:
+        if not path.exists("./sprites/temp/flipped_down_{}.png".format(typeID)):
+            imageObject = Image.open(pngPath)
+            imageObject = imageObject.transpose(Image.FLIP_LEFT_RIGHT)
+            imageObject = imageObject.transpose(Image.FLIP_TOP_BOTTOM)
+            imageObject.save("./sprites/temp/flipped_down_{}.png".format(typeID))
+        pngPath = "./sprites/temp/flipped_down_{}.png".format(typeID)
 
     returnY = 720 - y * cellSize - cellSize
     returnX = x * cellSize

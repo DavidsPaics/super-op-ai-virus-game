@@ -1,5 +1,6 @@
-# imports
-import sys
+# essential imports
+import shutil
+import os
 
 
 verbose = True
@@ -11,6 +12,13 @@ if verbose:
 import pygame
 from utils import objectSystemUtils  # Skatīt aprakstu pašā failā.
 import object as objectUtil
+
+#Clear temporary files
+try:
+    shutil.rmtree("./sprites/temp/")
+except:
+    pass
+os.mkdir("./sprites/temp/")
 
 if verbose:
     print("initialize pygame")
@@ -28,13 +36,14 @@ while run:
     # update background
     screen.blit(background, (0, 0))
 
-    #create ground (13 tiles long (see cell size in utils/globalInfo.py))
+    # create ground (13 tiles long (see cell size in utils/globalInfo.py))
     for i in range(13):
-        objectUtil.drawObject(screen, i, 0, 5, verbose=True)
-    
-    objectUtil.drawObject(screen, 4, 1, 3, rotation="left", verbose=True)
-    objectUtil.drawObject(screen, 5, 1, 3, rotation="right", verbose=True)
+        objectUtil.drawObject(screen, i, 0, 1, verbose=True)
 
+    objectUtil.drawObject(screen, 4, 1, 3, verbose=True)
+    objectUtil.drawObject(screen, 5, 1, 3, rotation="flipped", verbose=True)
+    objectUtil.drawObject(screen, 7, 1, 3, verbose=True, rotation="down")
+    objectUtil.drawObject(screen, 8, 1, 3, rotation="flipped down", verbose=True)
 
     for event in pygame.event.get():
         if event.type == pygame.QUIT:

@@ -27,5 +27,5 @@ def drawObject(screen, x, y, typeID, rotation="up", verbose=False):
     )
     screen.blit(texture, (returnObject.x, returnObject.y))
     if verbose:
-        print("drawing: {}, {}".format(returnObject.x, returnObject.y))
+        print("drawing: {}, {} from texture {}".format(returnObject.x, returnObject.y, returnObject.texture))
     return returnObject
