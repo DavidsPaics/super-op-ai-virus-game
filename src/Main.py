@@ -78,7 +78,7 @@ while run:
         airborne=True
     y_pos+=y_vel
     if airborne==True:
-        if smallest_y<=y_pos and smallest_y:
+        if smallest_y<=y_pos :
             airborne=False
             y_pos=smallest_y
             y_vel=0
@@ -88,7 +88,7 @@ while run:
                 y_vel=50
             if y_vel<-50:
                 y_vel=-50
-            y_vel+=2#I tested this, this should give us a nice smooth jump
+            y_vel+=5#I tested this, this should give us a nice smooth jump
     objectUtil.drawObject(screen, 5, 1-(y_pos/100), 4, verbose=False)
 
 
