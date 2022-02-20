@@ -49,8 +49,8 @@ while run:
     screen.blit(background, (0, 0))
 
     # create ground (13 tiles long (see cell size in utils/globalInfo.py))
-    for i in range(13):
-        objectUtil.drawObject(screen, i, 0, 1)
+    for i in range(50):
+        objectUtil.drawObject(screen, i+5, 0, 1, verbose=True)
 
 
     #objectUtil.drawObject(screen, 4, 1, 3, verbose=True)
@@ -76,7 +76,6 @@ while run:
             airborne=False
             y_pos=smallest_y
             y_vel=0
-        #elif smallest_y>
         else:
             if y_vel>50:
                 y_vel=50
