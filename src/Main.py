@@ -69,7 +69,7 @@ while run:
 
     keys = pygame.key.get_pressed()
     if keys[pygame.K_SPACE] and not airborne:
-<< << << < HEAD
+
         y_vel = -43
         airborne = True
     y_pos += y_vel
@@ -81,7 +81,6 @@ while run:
             airborne = False
             y_pos = smallest_y
             y_vel = 0
-
 
         else:
             y_vel += 5  # I tested this, this should give us a nice smooth jump
