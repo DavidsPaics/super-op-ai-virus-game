@@ -8,6 +8,7 @@ import pygame
 
 infoObject = globalInfo.variables()
 cellSize = infoObject.gridCellSize
+existingPaths = []
 
 
 def getObjectByType(x, y, typeID, rotation):
@@ -26,24 +27,30 @@ def getObjectByType(x, y, typeID, rotation):
 
 
     if "down" in rotation:
-        if not path.exists("./sprites/temp/down_{}.png".format(typeID)):
+        if not "./sprites/temp/down_{}.png".format(typeID) in existingPaths:
             imageObject = Image.open(pngPath)
             imageObject = imageObject.transpose(Image.FLIP_TOP_BOTTOM)
             imageObject.save("./sprites/temp/down_{}.png".format(typeID))
+        else:
+            existingPaths.append("./sprites/temp/down_{}.png".format(typeID))
         pngPath = "./sprites/temp/down_{}.png".format(typeID)
     elif "flipped" in rotation:
-        if not path.exists("./sprites/temp/flipped_{}.png".format(typeID)):
+        if not "./sprites/temp/flipped_{}.png".format(typeID) in existingPaths:
             imageObject = Image.open(pngPath)
             imageObject = imageObject.transpose(Image.FLIP_LEFT_RIGHT)
             imageObject.save("./sprites/temp/flipped_{}.png".format(typeID))
+        else:
+            existingPaths.append("./sprites/temp/flipped_{}.png".format(typeID))
         pngPath = "./sprites/temp/flipped_{}.png".format(typeID)
 
     if "flipped" in rotation and "down" in rotation:
-        if not path.exists("./sprites/temp/flipped_down_{}.png".format(typeID)):
+        if not "./sprites/temp/flipped_down_{}.png".format(typeID) in existingPaths:
             imageObject = Image.open(pngPath)
             imageObject = imageObject.transpose(Image.FLIP_LEFT_RIGHT)
             imageObject = imageObject.transpose(Image.FLIP_TOP_BOTTOM)
             imageObject.save("./sprites/temp/flipped_down_{}.png".format(typeID))
+        else:
+            existingPaths.append("./sprites/temp/flipped_down_{}.png".format(typeID))
         pngPath = "./sprites/temp/flipped_down_{}.png".format(typeID)
 
     returnY = 720 - y * cellSize - cellSize
