@@ -7,4 +7,4 @@ class variables(object):
         self.gridCellSize = 85
         self.worldHeightCells = 20
         self.worldHeightPx = self.worldHeightCells * self.gridCellSize
-        self.sideScrollSpeed = 2
+        self.sideScrollSpeed = 10
