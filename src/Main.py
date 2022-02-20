@@ -61,10 +61,10 @@ while run:
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
             run = False
-    objectUtil.drawObject(screen,5,1-ypos,5, verbose=True)
+    objectUtil.drawObject(screen,4,1-ypos,4, verbose=True)
     keys = pygame.key.get_pressed()
     #if keys[pygame.K_SPACE] and smallest:
-    #    vel[1]=10
+    #    vel[1]=
     pygame.display.flip()
     globalInfo.currentframe += 1
     clock.tick(60)
