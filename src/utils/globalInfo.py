@@ -1,3 +1,4 @@
+import pygame
 currentframe = 0
 
 

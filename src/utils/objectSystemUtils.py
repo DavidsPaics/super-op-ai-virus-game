@@ -9,11 +9,11 @@ import pygame
 infoObject = globalInfo.variables()
 cellSize = infoObject.gridCellSize
 existingPaths = []
+with open("./data/types.json", encoding="utf8") as f:
+    types = json.load(f)
 
 
 def getObjectByType(x, y, typeID, rotation, bypassSideScroll=False):
-    with open("./data/types.json", encoding="utf8") as f:
-        types = json.load(f)
 
     type = types[str(typeID)]
     pngPath = type["src"]
@@ -24,7 +24,6 @@ def getObjectByType(x, y, typeID, rotation, bypassSideScroll=False):
     else:
         pngPath = "./sprites/error.png"
         returnCode = 1
-
 
     if rotation == "down":
         if not "./sprites/temp/down_{}.png".format(typeID) in existingPaths:
@@ -40,24 +39,28 @@ def getObjectByType(x, y, typeID, rotation, bypassSideScroll=False):
             imageObject = imageObject.transpose(Image.FLIP_LEFT_RIGHT)
             imageObject.save("./sprites/temp/flipped_{}.png".format(typeID))
         else:
-            existingPaths.append("./sprites/temp/flipped_{}.png".format(typeID))
+            existingPaths.append(
+                "./sprites/temp/flipped_{}.png".format(typeID))
         pngPath = "./sprites/temp/flipped_{}.png".format(typeID)
 
-    if "flipped" in rotation and "down" in rotation:
+    elif rotation == "flipped down":
         if not "./sprites/temp/flipped_down_{}.png".format(typeID) in existingPaths:
             imageObject = Image.open(pngPath)
             imageObject = imageObject.transpose(Image.FLIP_LEFT_RIGHT)
             imageObject = imageObject.transpose(Image.FLIP_TOP_BOTTOM)
-            imageObject.save("./sprites/temp/flipped_down_{}.png".format(typeID))
+            imageObject.save(
+                "./sprites/temp/flipped_down_{}.png".format(typeID))
         else:
-            existingPaths.append("./sprites/temp/flipped_down_{}.png".format(typeID))
+            existingPaths.append(
+                "./sprites/temp/flipped_down_{}.png".format(typeID))
         pngPath = "./sprites/temp/flipped_down_{}.png".format(typeID)
 
     returnY = 720 - y * cellSize - cellSize
     if bypassSideScroll:
         returnX = x * cellSize
     else:
-        returnX = x * cellSize - (infoObject.sideScrollSpeed * globalInfo.currentframe)
+        returnX = x * cellSize - \
+            (infoObject.sideScrollSpeed * globalInfo.currentframe)
 
     hitboxType = type["type"]
 
