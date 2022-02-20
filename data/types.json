@@ -13,12 +13,7 @@
         "comment": "jāiet no labā augšējā stūra uz apakšējo kreiso stūri. tu jau saproti.",
         "name": "slope",
         "src": "slope.png",
-        "type": "slope1"
-    },
-    "4": {
-        "name": "slope-inverted",
-        "src": "slope.png",
-        "type": "slope2"
+        "type": "slope"
     },
     "5": {
         "name": "placeholder",

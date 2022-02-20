@@ -2,13 +2,15 @@ import json
 from PIL import Image
 import os.path
 from os import path
+from utils import globalInfo
 
-# imoprtē šo kā bibliotēku, izmanto funkciju getObjectType(n, rotation) lai dabūtu png attrašanās vietu, ja "name" sadaļa types.json failā iekļaus "inverted", fails tiks automātiski apgriests
-# Tiek izvadīti šādi dati: pngPath(String), returnCode(Int)
-# Ja kods ir 0 - viss ok, 1 - png tekstūra nav atrasta, tiek izmantota error.png
+import pygame
+
+infoObject = globalInfo.variables()
+cellSize = infoObject.gridCellSize
 
 
-def getObjectByType(typeID, rotation):
+def getObjectByType(x, y, typeID, rotation):
     with open("./data/types.json", encoding="utf8") as f:
         types = json.load(f)
 
@@ -22,28 +24,30 @@ def getObjectByType(typeID, rotation):
         pngPath = "./sprites/error.png"
         returnCode = 1
 
-    if rotation == "left":
-        if not path.exists("./sprites/temp/rotated90_{}.png".format(typeID)):
-            imageObject = Image.open(pngPath)
-            imageObject = imageObject.transpose(Image.ROTATE_90)
-            imageObject.save("./sprites/temp/rotated90_{}.png".format(typeID))
-            pngPath = "./sprites/temp/rotated90_{}.png".format(typeID)
-    elif rotation == "down":
-        if not path.exists("./sprites/temp/rotated180_{}.png".format(typeID)):
-            imageObject = Image.open(pngPath)
-            imageObject = imageObject.transpose(Image.ROTATE_180)
-            imageObject.save("./sprites/temp/rotated180_{}.png".format(typeID))
-            pngPath = "./sprites/temp/rotated180_{}.png".format(typeID)
-    elif rotation == "right":
-        if not path.exists("./sprites/temp/rotated170_{}.png".format(typeID)):
-            imageObject = Image.open(pngPath)
-            imageObject = imageObject.transpose(Image.ROTATE_270)
-            imageObject.save("./sprites/temp/rotated270_{}.png".format(typeID))
-            pngPath = "./sprites/temp/rotated270-_{}.png".format(typeID)
 
-    return pngPath, returnCode
+    if "down" in rotation:
+        if not path.exists("./sprites/temp/down_{}.png".format(typeID)):
+            imageObject = Image.open(pngPath)
+            imageObject = imageObject.transpose(Image.FLIP_TOP_BOTTOM)
+            imageObject.save("./sprites/temp/down_{}.png".format(typeID))
+            pngPath = "./sprites/temp/down_{}.png".format(typeID)
+    if "flipped" in rotation:
+        if not path.exists("./sprites/temp/flipped_{}.png".format(typeID)):
+            imageObject = Image.open(pngPath)
+            imageObject = imageObject.transpose(Image.FLIP_LEFT_RIGHT)
+            imageObject.save("./sprites/temp/flipped_{}.png".format(typeID))
+            pngPath = "./sprites/temp/flipped_{}.png".format(typeID)
+
+    returnY = 720 - y * cellSize - cellSize
+    returnX = x * cellSize
+
+    hitboxType = type["type"]
+
+    return pngPath, returnX, returnY, hitboxType, returnCode
 
 
 if __name__ == "__main__":
-    print("This is a library, not a script")
-    print(getObjectByType(1, "right"))
+    print(
+        "This is a library, not a script, strting test, this could take a few microseconds"
+    )
+    print(getObjectByType(0, 0, 1, "right"))
