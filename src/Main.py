@@ -50,7 +50,7 @@ while run:
 
     # create ground (13 tiles long (see cell size in utils/globalInfo.py))
     for i in range(13):
-        objectUtil.drawObject(screen, i, 0, 1, verbose=True)
+        objectUtil.drawObject(screen, i, 0, 1)
 
 
     #objectUtil.drawObject(screen, 4, 1, 3, verbose=True)
@@ -83,7 +83,7 @@ while run:
             if y_vel<-50:
                 y_vel=-50
             y_vel+=5#I tested this, this should give us a nice smooth jump
-    objectUtil.drawObject(screen, 5, 1-(y_pos/100), 4, verbose=False)
+    objectUtil.drawObject(screen, 5, 1-(y_pos/100), 4, bypassSideScroll=True)
 
 
 
