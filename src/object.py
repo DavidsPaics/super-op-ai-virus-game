@@ -23,7 +23,7 @@ class gridCell(object):
 
 def drawObject(screen, x, y, typeID, rotation="up", verbose=False, bypassSideScroll=False):
 
-    if (not x * variables.gridCellSize - (variables.sideScrollSpeed * globalInfo.currentframe) < -variables.gridCellSize):
+    if (not x * variables.gridCellSize - (variables.sideScrollSpeed * globalInfo.currentframe) < -variables.gridCellSize) or bypassSideScroll:
         if rotation + str(typeID) in loaded:
             returnY = 720 - y * variables.gridCellSize - variables.gridCellSize
             if bypassSideScroll:
