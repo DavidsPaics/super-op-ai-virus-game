@@ -11,7 +11,7 @@ cellSize = infoObject.gridCellSize
 existingPaths = []
 
 
-def getObjectByType(x, y, typeID, rotation):
+def getObjectByType(x, y, typeID, rotation, bypassSideScroll=False):
     with open("./data/types.json", encoding="utf8") as f:
         types = json.load(f)
 
@@ -54,7 +54,10 @@ def getObjectByType(x, y, typeID, rotation):
         pngPath = "./sprites/temp/flipped_down_{}.png".format(typeID)
 
     returnY = 720 - y * cellSize - cellSize
-    returnX = x * cellSize
+    if bypassSideScroll:
+        returnX = x * cellSize
+    else:
+        returnX = x * cellSize - (infoObject.sideScrollSpeed * globalInfo.currentframe)
 
     hitboxType = type["type"]
 

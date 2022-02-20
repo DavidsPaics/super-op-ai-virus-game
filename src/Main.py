@@ -10,11 +10,10 @@ if verbose:
     print("importing")
 # pygame setup
 import pygame
-from utils import objectSystemUtils  # Skatīt aprakstu pašā failā.
 import object as objectUtil
 from utils import globalInfo
 
-#Clear temporary files
+# Clear temporary files
 try:
     shutil.rmtree("./sprites/temp/")
 except:
@@ -40,17 +39,17 @@ while run:
 
     # create ground (13 tiles long (see cell size in utils/globalInfo.py))
     for i in range(13):
-       objectUtil.drawObject(screen, i, 0, 1, verbose=True)
+        objectUtil.drawObject(screen, i, 0, 1, verbose=True)
 
-    objectUtil.drawObject(screen, 4, 1, 3, verbose=True)
-    objectUtil.drawObject(screen, 5, 1, 3, rotation="flipped", verbose=True)
-    objectUtil.drawObject(screen, 7, 1, 3, verbose=True, rotation="down")
-    objectUtil.drawObject(screen, 8, 1, 3, rotation="flipped down", verbose=True)
+    objectUtil.drawObject(screen, 4, 1, 3, verbose=True, bypassSideScroll=True)
+    objectUtil.drawObject(screen, 5, 1, 3, rotation="flipped", verbose=True, bypassSideScroll=True)
+    objectUtil.drawObject(screen, 7, 1, 3, verbose=True, rotation="down", bypassSideScroll=True)
+    objectUtil.drawObject(screen, 8, 1, 3, rotation="flipped down", verbose=True, bypassSideScroll=True)
 
     if globalInfo.currentframe % 2 == 0:
-        objectUtil.drawObject(screen, 6, 3, 5, verbose=True)
+        objectUtil.drawObject(screen, 6, 3, 5, verbose=True, bypassSideScroll=True)
     else:
-        objectUtil.drawObject(screen, 5, 3, 5, verbose=True)
+        objectUtil.drawObject(screen, 5, 3, 5, verbose=True, bypassSideScroll=True)
 
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
