@@ -30,7 +30,6 @@ def getObjectByType(x, y, typeID, rotation, bypassSideScroll=False):
             imageObject = Image.open(pngPath)
             imageObject = imageObject.transpose(Image.FLIP_TOP_BOTTOM)
             imageObject.save("./sprites/temp/down_{}.png".format(typeID))
-        else:
             existingPaths.append("./sprites/temp/down_{}.png".format(typeID))
         pngPath = "./sprites/temp/down_{}.png".format(typeID)
     elif rotation == "flipped":
@@ -38,7 +37,6 @@ def getObjectByType(x, y, typeID, rotation, bypassSideScroll=False):
             imageObject = Image.open(pngPath)
             imageObject = imageObject.transpose(Image.FLIP_LEFT_RIGHT)
             imageObject.save("./sprites/temp/flipped_{}.png".format(typeID))
-        else:
             existingPaths.append(
                 "./sprites/temp/flipped_{}.png".format(typeID))
         pngPath = "./sprites/temp/flipped_{}.png".format(typeID)
@@ -50,7 +48,6 @@ def getObjectByType(x, y, typeID, rotation, bypassSideScroll=False):
             imageObject = imageObject.transpose(Image.FLIP_TOP_BOTTOM)
             imageObject.save(
                 "./sprites/temp/flipped_down_{}.png".format(typeID))
-        else:
             existingPaths.append(
                 "./sprites/temp/flipped_down_{}.png".format(typeID))
         pngPath = "./sprites/temp/flipped_down_{}.png".format(typeID)
