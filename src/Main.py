@@ -18,14 +18,19 @@ os.mkdir("./sprites/temp/")
 if verbose:
     print("initialize pygame")
 pygame.init()
+# Variables
+font = pygame.font.SysFont("Arial", 25)
 screen = pygame.display.set_mode((1080, 720))
 run = True
 clock = pygame.time.Clock()
 background = pygame.image.load("./sprites/background.png")
 background = pygame.transform.scale(background, (1080, 720))
+experimentalLoaderText = font.render(
+    "Press L to switch to experimental level loading system (DO NOT USE)", 3, pygame.Color("red"))
+alive = True
+
 pygame.mouse.set_visible(False)
 pygame.display.set_caption("Geometry shoot")
-font = pygame.font.SysFont("Arial", 18)
 
 
 def update_fps():
@@ -37,6 +42,8 @@ def update_fps():
 def commit_stop_living():
     # Commits die
     print("you died")
+    global alive
+    alive = False
 
 
 currentframe = 0
@@ -50,15 +57,11 @@ while run:
     screen.blit(background, (0, 0))
 
     # create ground (13 tiles long (see cell size in utils/globalInfo.py))
-    for i in range(50):
-        objectUtil.drawObject(screen, i+5, 0, 1, verbose=True)
-
-    # objectUtil.drawObject(screen, 4, 1, 3, verbose=True)
-    # objectUtil.drawObject(screen, 5, 1, 3, rotation="flipped", verbose=True)
-    # objectUtil.drawObject(screen, 7, 1, 3, verbose=True, rotation="down")
-    # objectUtil.drawObject(screen, 8, 1, 3, rotation="flipped down", verbose=True)
+    for i in range(15):
+        objectUtil.drawObject(screen, i, 0, 1)
 
     screen.blit(update_fps(), (10, 0))
+    screen.blit(experimentalLoaderText, (200, 0))
 
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
@@ -73,8 +76,7 @@ while run:
     y_pos += y_vel
     if airborne == True:
         if smallest_y < y_pos-50:
-            # commit_stop_living()
-            print("died")
+            commit_stop_living()
         elif smallest_y <= y_pos:
             airborne = False
             y_pos = smallest_y
@@ -90,7 +92,9 @@ while run:
     objectUtil.drawObject(screen, 5, 1-(y_pos/100), 4,
                           bypassSideScroll=True)
 
-    globalInfo.currentframe += 1
+    if alive:
+        globalInfo.currentframe += 1
+    globalInfo.realCurrentFrame += 1
     clock.tick(60)
     pygame.display.update()
 pygame.quit()

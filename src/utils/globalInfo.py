@@ -1,5 +1,6 @@
 import pygame
 currentframe = 0
+realCurrentFrame = 0
 
 
 class variables(object):
