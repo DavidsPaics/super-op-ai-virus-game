@@ -6,3 +6,4 @@ def startLoader():
 
 def loadLevel(level):
     levelFile = open("level{}.txt".format(level))
+    levelData = []
