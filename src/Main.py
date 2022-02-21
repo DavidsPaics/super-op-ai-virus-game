@@ -7,8 +7,6 @@ verbose = True
 if verbose:
     print("importing")
 
-# essential imports
-
 
 # Clear temporary files
 try:
