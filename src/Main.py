@@ -8,6 +8,7 @@ verbose = True
 if verbose:
     print("importing")
 
+#Just renamed Main.py to main.py
 
 # Clear temporary files
 try:
