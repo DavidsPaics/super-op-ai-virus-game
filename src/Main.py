@@ -3,6 +3,7 @@ import shutil
 import pygame
 import object as objectUtil
 from utils import globalInfo
+from utils import levelLoader
 verbose = True
 if verbose:
     print("importing")
@@ -61,7 +62,7 @@ while run:
         objectUtil.drawObject(screen, i, 0, 1)
 
     screen.blit(update_fps(), (10, 0))
-    screen.blit(experimentalLoaderText, (200, 0))
+    screen.blit(experimentalLoaderText, (100, 0))
 
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
@@ -70,9 +71,10 @@ while run:
 
     keys = pygame.key.get_pressed()
     if keys[pygame.K_SPACE] and not airborne:
-
         y_vel = -43
         airborne = True
+    elif keys[pygame.K_l]:
+        levelLoader.startLoader()
     y_pos += y_vel
     if airborne == True:
         if smallest_y < y_pos-50:
