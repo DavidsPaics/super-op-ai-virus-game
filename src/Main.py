@@ -76,6 +76,7 @@ while run:
         airborne = True
     elif keys[pygame.K_l]:
         levelLoader.startLoader()
+        experimentalLoaderText = experimentalLoaderText = font.render("EXPERIMENTAL LEVEL RENDERER IS ENABLED (RESTART TO DISABLE)", 3, pygame.Color("red"))
     y_pos += y_vel
     if airborne == True:
         if smallest_y < y_pos-50:
