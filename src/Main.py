@@ -54,7 +54,6 @@ while run:
     # create ground (13 tiles long (see cell size in utils/globalInfo.py))
     for i in range(50):
         objectUtil.drawObject(screen, i+5, 0, 1, verbose=True)
-
     # objectUtil.drawObject(screen, 4, 1, 3, verbose=True)
     # objectUtil.drawObject(screen, 5, 1, 3, rotation="flipped", verbose=True)
     # objectUtil.drawObject(screen, 7, 1, 3, verbose=True, rotation="down")
