@@ -2,7 +2,6 @@ from utils import objectSystemUtils
 import pygame
 from utils import globalInfo
 
-variables = globalInfo.variables()
 blocked = False
 loaded = {}
 
@@ -24,17 +23,17 @@ class gridCell(object):
 
 def drawObject(screen, x, y, typeID, rotation="up", verbose=False, bypassSideScroll=False):
     if not blocked:
-        if ((not x * variables.gridCellSize - (variables.sideScrollSpeed * globalInfo.currentframe) < -variables.gridCellSize) and not (variables.screenWidth - (x * variables.gridCellSize - (variables.sideScrollSpeed * globalInfo.currentframe)) < 0)) or bypassSideScroll:
+        if ((not x * globalInfo.gridCellSize - (globalInfo.sideScrollSpeed * globalInfo.currentframe) < -globalInfo.gridCellSize) and not (globalInfo.screenWidth - (x * globalInfo.gridCellSize - (globalInfo.sideScrollSpeed * globalInfo.currentframe)) < 0)) or bypassSideScroll:
             if rotation + str(typeID) in loaded:
-                returnY = 720 - y * variables.gridCellSize - variables.gridCellSize
+                returnY = 720 - y * globalInfo.gridCellSize - globalInfo.gridCellSize
                 if bypassSideScroll:
-                    returnX = x * variables.gridCellSize
+                    returnX = x * globalInfo.gridCellSize
                 else:
-                    returnX = x * variables.gridCellSize - (variables.sideScrollSpeed * globalInfo.currentframe)
+                    returnX = x * globalInfo.gridCellSize - (globalInfo.sideScrollSpeed * globalInfo.currentframe)
                 
                 texture = pygame.image.load(loaded[rotation+str(typeID)])
                 texture = pygame.transform.scale(
-                    texture, (variables.gridCellSize, variables.gridCellSize)
+                    texture, (globalInfo.gridCellSize, globalInfo.gridCellSize)
                 )
                 screen.blit(texture, (returnX, returnY))
                 if verbose:
@@ -45,7 +44,7 @@ def drawObject(screen, x, y, typeID, rotation="up", verbose=False, bypassSideScr
                 )
                 texture = pygame.image.load(returnObject.texture)
                 texture = pygame.transform.scale(
-                    texture, (variables.gridCellSize, variables.gridCellSize)
+                    texture, (globalInfo.gridCellSize, globalInfo.gridCellSize)
                 )
                 screen.blit(texture, (returnObject.x, returnObject.y))
                 if verbose:

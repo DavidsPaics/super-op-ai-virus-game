@@ -5,5 +5,5 @@
 0000050000
 0101010101
 -----------
-katrs nepāra skaitlis ir rotācija (0 - normal, 1 - flipped, 3 - down, 4 - flipped down)
-katrs pāra skaitlis ir objekta ID
+katrs nepara skaitlis ir rotacija (0 - normal, 1 - flipped, 3 - down, 4 - flipped down)
+katrs para skaitlis ir objekta ID
