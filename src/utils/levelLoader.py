@@ -11,7 +11,8 @@ def loadLevel(level):
         levelLenght = levelFile.readline().replace("\n", "")
         print (levelLenght)
         levelData = []
-        for i in range(globalInfo.worldHeightCells)
+        for i in range(globalInfo.worldHeightCells):
+            pass
 
 
 def drawLevelFromData(data, outputDir="data/temp/loadedLevel.png"):
