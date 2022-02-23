@@ -51,7 +51,6 @@ def commit_stop_living():
 currentframe = 0
 y_vel = 0
 y_pos = 0
-smallest_y = 0
 airborne = False
 experimentalLevelLoader = False
 # mainloop
@@ -88,11 +87,11 @@ while run:
         quit()
     y_pos += y_vel
     if airborne == True:
-        if smallest_y < y_pos-50:
+        if globalInfo.smallest_y < y_pos-50:
             commit_stop_living()
-        elif smallest_y <= y_pos:
+        elif globalInfo.smallest_y <= y_pos:
             airborne = False
-            y_pos = smallest_y
+            y_pos = globalInfo.smallest_y
             y_vel = 0
 
         else:
