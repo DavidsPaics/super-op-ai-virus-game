@@ -8,7 +8,7 @@ verbose = True
 if verbose:
     print("importing")
 
-#Just renamed Main.py to main.py
+# Just renamed Main.py to main.py
 
 # Clear temporary files
 try:
@@ -53,6 +53,7 @@ y_vel = 0
 y_pos = 0
 smallest_y = 0
 airborne = False
+experimentalLevelLoader = False
 # mainloop
 while run:
     # update background
@@ -64,6 +65,9 @@ while run:
 
     screen.blit(update_fps(), (10, 0))
     screen.blit(experimentalLoaderText, (100, 0))
+    if experimentalLevelLoader:
+        screen.blit(levelTexture, (0-(globalInfo.currentframe *
+                    globalInfo.sideScrollSpeed), -(globalInfo.worldHeightPx - 720)))
 
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
@@ -75,8 +79,13 @@ while run:
         y_vel = -43
         airborne = True
     elif keys[pygame.K_l]:
-        levelLoader.startLoader()
-        experimentalLoaderText = experimentalLoaderText = font.render("EXPERIMENTAL LEVEL RENDERER IS ENABLED (RESTART TO DISABLE)", 3, pygame.Color("red"))
+        levelTexture = levelLoader.startLoader(screen)
+        experimentalLevelLoader = True
+        experimentalLoaderText = experimentalLoaderText = font.render(
+            "EXPERIMENTAL LEVEL RENDERER IS ENABLED (RESTART TO DISABLE)", 3, pygame.Color("red"))
+        globalInfo.currentframe = 0
+    elif keys[pygame.K_q]:
+        quit()
     y_pos += y_vel
     if airborne == True:
         if smallest_y < y_pos-50:
@@ -87,7 +96,8 @@ while run:
             y_vel = 0
 
         else:
-            y_vel += 5  # I tested this, this should give us a nice smooth jump
+            # I tested this, this should give us a nice smooth jump
+            y_vel += 5
             if y_vel > 50:
                 y_vel = 50
             if y_vel < -50:
@@ -99,6 +109,6 @@ while run:
     if alive:
         globalInfo.currentframe += 1
     globalInfo.realCurrentFrame += 1
-    clock.tick(60)
+    deltaTime = clock.tick(30)
     pygame.display.update()
 pygame.quit()

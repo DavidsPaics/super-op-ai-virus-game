@@ -6,8 +6,7 @@ from utils import globalInfo
 
 import pygame
 
-infoObject = globalInfo.variables()
-cellSize = infoObject.gridCellSize
+cellSize = globalInfo.gridCellSize
 existingPaths = []
 with open("./data/types.json", encoding="utf8") as f:
     types = json.load(f)
@@ -15,8 +14,12 @@ with open("./data/types.json", encoding="utf8") as f:
 
 def getObjectByType(x, y, typeID, rotation, bypassSideScroll=False):
 
-    type = types[str(typeID)]
-    pngPath = type["src"]
+    try:
+        type = types[str(typeID)]
+        pngPath = type["src"]
+    except KeyError:
+        pngPath = "./sprites/error.png"
+    
 
     if path.exists("./sprites/{}".format(pngPath)):
         pngPath = "./sprites/{}".format(pngPath)
@@ -57,9 +60,12 @@ def getObjectByType(x, y, typeID, rotation, bypassSideScroll=False):
         returnX = x * cellSize
     else:
         returnX = x * cellSize - \
-            (infoObject.sideScrollSpeed * globalInfo.currentframe)
+            (globalInfo.sideScrollSpeed * globalInfo.currentframe)
 
-    hitboxType = type["type"]
+    try:
+        hitboxType = type["type"]
+    except UnboundLocalError:
+        hitboxType = "block"
 
     return pngPath, returnX, returnY, hitboxType, returnCode
 
