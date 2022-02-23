@@ -1,5 +1,6 @@
 import json
 from PIL import Image
+import pygame
 from utils import globalInfo
 from utils import objectSystemUtils
 import object
@@ -8,17 +9,21 @@ with open("./data/types.json", encoding="utf8") as f:
     types = json.load(f)
 
 
-def startLoader():
+def startLoader(screen):
     object.blocked = True
-    loadLevel(1)
+    texture = loadLevel(1, screen)
+    return texture
 
 
-def loadLevel(level):
+def loadLevel(level, screen):
     levelData = []
     with open("./data/level{}.txt".format(level), "r") as levelFile:
         rawData = levelFile.read()
     levelData = list(map(str, rawData.split("\n")))
-    drawLevelFromData(levelData)
+    drawLevelFromData(levelData, output="./data/temp/loadedLevel{}.png".format(level))
+    texture = pygame.image.load("./data/temp/loadedLevel{}.png".format(level))
+    return texture
+
 
 
 def drawLevelFromData(data, output="./data/temp/loadedLevel.png"):
@@ -53,4 +58,20 @@ def drawLevelFromData(data, output="./data/temp/loadedLevel.png"):
                 pass
     backplate.save(output)
     print("Loaded level")
-    return 
+
+def chopLevel(level, width):
+    im = Image.open("./data/temp/loadedLevel{}.png")
+
+    width, height = im.size
+    
+    # Setting the points for cropped image
+    left = 5
+    top = height
+    right = 164
+    bottom = height
+    
+    # Cropped image of above dimension
+    im1 = im.crop((left, top, right, bottom))
+    
+    # Shows the image in image viewer
+    im1.save("")
