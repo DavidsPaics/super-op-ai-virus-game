@@ -4,6 +4,7 @@ import pygame
 import object as objectUtil
 from utils import globalInfo
 from utils import levelLoader
+from pygame.locals import *
 verbose = True
 if verbose:
     print("importing")
@@ -22,7 +23,8 @@ if verbose:
 pygame.init()
 # Variables
 font = pygame.font.SysFont("Arial", 25)
-screen = pygame.display.set_mode((1080, 720))
+flags = DOUBLEBUF
+screen = pygame.display.set_mode((1080, 720), flags, 16)
 run = True
 clock = pygame.time.Clock()
 background = pygame.image.load("./sprites/background.png")
@@ -54,7 +56,7 @@ y_pos = 0
 airborne = False
 experimentalLevelLoader = False
 # mainloop
-while run:
+while 1:
     # update background
     screen.blit(background, (0, 0))
 
@@ -70,7 +72,7 @@ while run:
 
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
-            run = False
+            quit()
     # Player position and velocity managment
 
     keys = pygame.key.get_pressed()
@@ -108,6 +110,6 @@ while run:
     if alive:
         globalInfo.currentframe += 1
     globalInfo.realCurrentFrame += 1
-    deltaTime = clock.tick(30)
+    deltaTime = clock.tick()
     pygame.display.update()
 pygame.quit()

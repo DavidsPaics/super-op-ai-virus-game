@@ -21,7 +21,7 @@ def loadLevel(level, screen):
         rawData = levelFile.read()
     levelData = list(map(str, rawData.split("\n")))
     drawLevelFromData(levelData, output="./data/temp/loadedLevel{}.png".format(level))
-    texture = pygame.image.load("./data/temp/loadedLevel{}.png".format(level))
+    texture = pygame.image.load("./data/temp/loadedLevel{}.png".format(level)).convert_alpha()
     return texture
 
 
@@ -58,6 +58,9 @@ def drawLevelFromData(data, output="./data/temp/loadedLevel.png"):
                 pass
     backplate.save(output)
     print("Loaded level")
+
+
+
 
 def chopLevel(level, width):
     im = Image.open("./data/temp/loadedLevel{}.png")

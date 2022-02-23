@@ -31,7 +31,7 @@ def drawObject(screen, x, y, typeID, rotation="up", verbose=False, bypassSideScr
                 else:
                     returnX = x * globalInfo.gridCellSize - (globalInfo.sideScrollSpeed * globalInfo.currentframe)
                 
-                texture = pygame.image.load(loaded[rotation+str(typeID)])
+                texture = pygame.image.load(loaded[rotation+str(typeID)]).convert_alpha()
                 texture = pygame.transform.scale(
                     texture, (globalInfo.gridCellSize, globalInfo.gridCellSize)
                 )
@@ -42,7 +42,7 @@ def drawObject(screen, x, y, typeID, rotation="up", verbose=False, bypassSideScr
                 returnObject = gridCell(
                     x, y, typeID, rotation, bypassSideScroll=bypassSideScroll
                 )
-                texture = pygame.image.load(returnObject.texture)
+                texture = pygame.image.load(returnObject.texture).convert_alpha()
                 texture = pygame.transform.scale(
                     texture, (globalInfo.gridCellSize, globalInfo.gridCellSize)
                 )
