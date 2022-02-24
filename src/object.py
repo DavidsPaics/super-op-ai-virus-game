@@ -21,7 +21,7 @@ class gridCell(object):
         )
 
 
-def drawObject(screen, x, y, typeID, rotation="up", verbose=False, bypassSideScroll=False):
+def drawObject(screen, x, y, typeID, rotation="up", verbose=False, bypassSideScroll=False, actualRotation=0):
     if not blocked or typeID == 4:
         if ((not x * globalInfo.gridCellSize - (globalInfo.sideScrollSpeed * globalInfo.currentframe) < -globalInfo.gridCellSize) and not (globalInfo.screenWidth - (x * globalInfo.gridCellSize - (globalInfo.sideScrollSpeed * globalInfo.currentframe)) < 0)) or bypassSideScroll:
             if rotation + str(typeID) in loaded:
@@ -32,10 +32,11 @@ def drawObject(screen, x, y, typeID, rotation="up", verbose=False, bypassSideScr
                     returnX = x * globalInfo.gridCellSize - (globalInfo.sideScrollSpeed * globalInfo.currentframe)
                 
                 texture = pygame.image.load(loaded[rotation+str(typeID)]).convert_alpha()
+                
                 texture = pygame.transform.scale(
                     texture, (globalInfo.gridCellSize, globalInfo.gridCellSize)
                 )
-                screen.blit(texture, (returnX, returnY))
+                screen.blit(pygame.transform.rotate(texture, actualRotation), (returnX, returnY))
                 if verbose:
                     print("drawing object from cached texture")
             else:
