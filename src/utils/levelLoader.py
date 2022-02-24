@@ -59,8 +59,12 @@ def drawLevelFromData(data, output="./data/temp/loadedLevel.png"):
     backplate.save(output)
     print("Loaded level")
 
-
-
+def collisionMaker(levelChopped, widthCells):
+    collisions = "{}".format(globalInfo.worldHeightCells)*widthCells
+    print("Loading collisions")
+    for x in range(widthCells):
+        for y in range(globalInfo.worldHeightCells):
+            pass
 
 def chopLevel(level, width):
     im = Image.open("./data/temp/loadedLevel{}.png")
