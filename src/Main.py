@@ -55,6 +55,8 @@ y_vel = 0
 y_pos = 0
 airborne = False
 experimentalLevelLoader = False
+jump_frame = 0
+jump_snap = 0
 # mainloop
 while 1:
     # update background
@@ -74,7 +76,6 @@ while 1:
         if event.type == pygame.QUIT:
             quit()
     # Player position and velocity managment
-
     keys = pygame.key.get_pressed()
     if keys[pygame.K_SPACE] and not airborne:
         y_vel = -43
@@ -89,9 +90,12 @@ while 1:
         quit()
     y_pos += y_vel
     if airborne == True:
+        jump_frame -= 4.75
         if globalInfo.smallest_y < y_pos-50:
             commit_stop_living()
         elif globalInfo.smallest_y <= y_pos:
+            jump_snap += 1
+            jump_frame = (4 - (jump_snap % 4)) * 90
             airborne = False
             y_pos = globalInfo.smallest_y
             y_vel = 0
@@ -105,11 +109,11 @@ while 1:
                 y_vel = -50
 
     objectUtil.drawObject(screen, 5, 1-(y_pos/100), 4,
-                          bypassSideScroll=True)
+                          bypassSideScroll=True, actualRotation=jump_frame)
 
     if alive:
         globalInfo.currentframe += 1
     globalInfo.realCurrentFrame += 1
-    deltaTime = clock.tick()
+    deltaTime = clock.tick(30)
     pygame.display.update()
 pygame.quit()
