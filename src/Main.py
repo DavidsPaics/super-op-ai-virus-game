@@ -35,6 +35,8 @@ alive = True
 
 pygame.mouse.set_visible(False)
 pygame.display.set_caption("Geometry shoot")
+icon = pygame.image.load("./sprites/Player.png")
+pygame.display.set_icon(icon)
 
 
 def update_fps():
