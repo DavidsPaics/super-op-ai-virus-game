@@ -30,7 +30,7 @@ clock = pygame.time.Clock()
 background = pygame.image.load("./sprites/background.png")
 background = pygame.transform.scale(background, (1080, 720))
 experimentalLoaderText = font.render(
-    "Press L to switch to experimental level loading system (DO NOT USE)", 3, pygame.Color("red"))
+    "Press L to switch to experimental level loading system", 3, pygame.Color("red"))
 alive = True
 
 pygame.mouse.set_visible(False)
