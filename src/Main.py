@@ -46,6 +46,8 @@ def update_fps():
 def commit_stop_living():
     # Commits die
     print("you died")
+    global experimentalLoaderText
+    experimentalLoaderText = font.render("YOU DED", 3, pygame.Color("red"))
     global alive
     alive = False
 
@@ -107,8 +109,8 @@ while 1:
                 y_vel = 50
             if y_vel < -50:
                 y_vel = -50
-
-    objectUtil.drawObject(screen, 5, 1-(y_pos/100), 4,
+    globalInfo.currentPlayerHeight = 1-(y_pos/100)
+    objectUtil.drawObject(screen, 5, globalInfo.currentPlayerHeight, 4,
                           bypassSideScroll=True, actualRotation=jump_frame)
 
     if alive:

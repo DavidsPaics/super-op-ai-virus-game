@@ -20,6 +20,9 @@ class gridCell(object):
             x, y, typeID, rotation, bypassSideScroll=bypassSideScroll
         )
 
+def checkColission(data):
+    pass
+
 
 def drawObject(screen, x, y, typeID, rotation="up", verbose=False, bypassSideScroll=False, actualRotation=0):
     if not blocked or typeID == 4:
