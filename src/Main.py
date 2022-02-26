@@ -28,10 +28,14 @@ screen = pygame.display.set_mode((1080, 720), flags, 16)
 run = True
 clock = pygame.time.Clock()
 background = pygame.image.load("./sprites/background.png")
-background = pygame.transform.scale(background, (globalInfo.screenWidth, globalInfo.screenWidth * 0.75))
+background = pygame.transform.scale(
+    background, (globalInfo.screenWidth, globalInfo.screenWidth * 0.66666666666))
 experimentalLoaderText = font.render(
     "Press L to switch to experimental level loading system", 3, pygame.Color("red"))
 alive = True
+
+globalInfo.screenWidth, globalInfo.screenHeight = pygame.display.get_surface().get_size()
+globalInfo.gridCellSize = globalInfo.screenWidth / 12
 
 pygame.mouse.set_visible(False)
 pygame.display.set_caption("Geometry shoot")
@@ -62,6 +66,9 @@ jump_frame = 0
 jump_snap = 0
 # mainloop
 while 1:
+    background = pygame.transform.scale(
+        background, (globalInfo.screenWidth, globalInfo.screenHeight))
+
     # update background
     screen.blit(background, (0, 0))
 
@@ -110,7 +117,8 @@ while 1:
                 y_vel = 50
             if y_vel < -50:
                 y_vel = -50
-    globalInfo.currentPlayerHeight = 1-(y_pos/100)
+    globalInfo.currentPlayerHeight = (
+        smallest_y)-(y_pos/globalInfo.gridCellSize)
     objectUtil.drawObject(screen, 5, globalInfo.currentPlayerHeight, 4,
                           bypassSideScroll=True, actualRotation=jump_frame)
 

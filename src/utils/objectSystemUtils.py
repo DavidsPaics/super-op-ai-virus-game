@@ -6,7 +6,6 @@ from utils import globalInfo
 
 import pygame
 
-cellSize = globalInfo.gridCellSize
 existingPaths = []
 with open("./data/types.json", encoding="utf8") as f:
     types = json.load(f)
@@ -55,11 +54,11 @@ def getObjectByType(x, y, typeID, rotation, bypassSideScroll=False):
                 "./sprites/temp/flipped_down_{}.png".format(typeID))
         pngPath = "./sprites/temp/flipped_down_{}.png".format(typeID)
 
-    returnY = 720 - y * cellSize - cellSize
+    returnY = globalInfo.screenHeight - y * globalInfo.gridCellSize - globalInfo.gridCellSize
     if bypassSideScroll:
-        returnX = x * cellSize
+        returnX = x * globalInfo.gridCellSize
     else:
-        returnX = x * cellSize - \
+        returnX = x * globalInfo.gridCellSize - \
             (globalInfo.sideScrollSpeed * globalInfo.currentframe)
 
     try:
