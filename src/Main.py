@@ -28,7 +28,7 @@ screen = pygame.display.set_mode((1080, 720), flags, 16)
 run = True
 clock = pygame.time.Clock()
 background = pygame.image.load("./sprites/background.png")
-background = pygame.transform.scale(background, (1080, 720))
+background = pygame.transform.scale(background, (globalInfo.screenWidth, globalInfo.screenWidth * 0.75))
 experimentalLoaderText = font.render(
     "Press L to switch to experimental level loading system", 3, pygame.Color("red"))
 alive = True

@@ -3,6 +3,7 @@ import pygame
 from utils import globalInfo
 
 blocked = False
+data = []
 loaded = {}
 
 
@@ -20,8 +21,9 @@ class gridCell(object):
             x, y, typeID, rotation, bypassSideScroll=bypassSideScroll
         )
 
-def checkColission(data):
-    pass
+def initCollisionTester(inData):
+    global data
+    data = inData
 
 
 def drawObject(screen, x, y, typeID, rotation="up", verbose=False, bypassSideScroll=False, actualRotation=0):

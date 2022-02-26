@@ -6,5 +6,6 @@ worldHeightPx = worldHeightCells * gridCellSize
 sideScrollSpeed = 10
 sideScrollSpeed = 20
 screenWidth = 1080
+screenHeight = 720
 currentLevelWidth = 70
 smallest_y = 0
