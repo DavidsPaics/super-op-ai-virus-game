@@ -20,6 +20,7 @@ def loadLevel(level, screen):
     with open("./data/level{}.txt".format(level), "r") as levelFile:
         rawData = levelFile.read()
     levelData = list(map(str, rawData.split("\n")))
+    globalInfo.levelData = levelData
     drawLevelFromData(levelData, output="./data/temp/loadedLevel{}.png".format(level))
     texture = pygame.image.load("./data/temp/loadedLevel{}.png".format(level)).convert_alpha()
     return texture
@@ -27,7 +28,7 @@ def loadLevel(level, screen):
 
 
 def drawLevelFromData(data, output="./data/temp/loadedLevel.png"):
-    backplate = Image.new("RGBA", (globalInfo.gridCellSize * int(data[0]) // 2, globalInfo.gridCellSize * (len(data) - 1)), (255, 0, 0, 0))
+    backplate = Image.new("RGBA", (90 * int(data[0]) // 2, 90 * (len(data) - 1)), (255, 0, 0, 0))
 
     yIndex = -1
     for y in data[1:]:
@@ -47,20 +48,17 @@ def drawLevelFromData(data, output="./data/temp/loadedLevel.png"):
                 path, _, _, _, _ = objectSystemUtils.getObjectByType(
                     0, 0, type, rotation, bypassSideScroll=True)
 
-                drawX = (x - 1) * globalInfo.gridCellSize
-                drawY = yIndex * globalInfo.gridCellSize
+                drawX = (x - 1) * 90
+                drawY = yIndex * 90
 
                 loadedImage = Image.open(path)
                 loadedImage = loadedImage.resize(
-                    (globalInfo.gridCellSize, globalInfo.gridCellSize))
+                    (90, 90))
                 Image.Image.paste(backplate, loadedImage, (drawX, drawY))
 
                 pass
     backplate.save(output)
     print("Loaded level")
-
-
-
 
 def chopLevel(level, width):
     im = Image.open("./data/temp/loadedLevel{}.png")
